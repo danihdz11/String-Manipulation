@@ -1,0 +1,84 @@
+
+import json
+import re
+from pathlib import Path
+
+# Paths
+BASE_DIR = Path(__file__).resolve().parent
+INPUT_FILE = BASE_DIR / "data/processed/chunks.json"
+OUTPUT_FILE = BASE_DIR / "data/processed/preprocessed_chunks.json"
+
+
+def preprocess_text(text):
+    # Convert text to lowercase
+    text = text.lower()
+
+    # Tokenize and remove punctuation/special characters
+    tokens = re.findall(r"[a-z0-9]+", text)
+
+    # Reconstruct normalized text
+    normalized_text = " ".join(tokens)
+
+    return tokens, normalized_text
+
+
+def main():
+    # Load original chunks
+    with open(INPUT_FILE, "r", encoding="utf-8") as file:
+        chunks = json.load(file)
+
+    preprocessed_chunks = []
+    vocabulary = set()
+    total_tokens = 0
+
+    for chunk in chunks:
+        tokens, normalized_text = preprocess_text(
+            chunk["text"]
+        )
+
+        # Preserve original chunk metadata and text
+        processed_chunk = {
+            **chunk,
+            "normalized_text": normalized_text,
+            "tokens": tokens
+        }
+
+        preprocessed_chunks.append(processed_chunk)
+
+        # Add words to vocabulary
+        vocabulary.update(tokens)
+
+        total_tokens += len(tokens)
+
+    # Save processed data
+    with open(OUTPUT_FILE, "w", encoding="utf-8") as file:
+        json.dump(
+            preprocessed_chunks,
+            file,
+            indent=2,
+            ensure_ascii=False
+        )
+
+    print("\n===== PREPROCESSING RESULTS =====")
+    print(f"Chunks processed: {len(preprocessed_chunks)}")
+    print(f"Total tokens: {total_tokens:,}")
+    print(f"Unique words: {len(vocabulary):,}")
+    print(f"Output file: {OUTPUT_FILE}")
+
+    # Show preprocessing example
+    first_chunk = preprocessed_chunks[0]
+
+    print("\n===== PREPROCESSING EXAMPLE =====")
+
+    print("\nOriginal text:")
+    print(first_chunk["text"][:300])
+
+    print("\nNormalized text:")
+    print(first_chunk["normalized_text"][:300])
+
+    print("\nFirst 20 tokens:")
+    print(first_chunk["tokens"][:20])
+
+
+if __name__ == "__main__":
+    main()

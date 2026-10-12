@@ -1,0 +1,227 @@
+{
+  "question": "How do decison trees work for classificaton?",
+  "query_terms": [
+    "decison",
+    "trees",
+    "work",
+    "classificaton"
+  ],
+  "corrections": [
+    {
+      "original": "decison",
+      "corrected": "decision",
+      "distance": 1
+    },
+    {
+      "original": "trees",
+      "corrected": "trees",
+      "distance": 0
+    },
+    {
+      "original": "work",
+      "corrected": "work",
+      "distance": 0
+    },
+    {
+      "original": "classificaton",
+      "corrected": "classification",
+      "distance": 1
+    }
+  ],
+  "levenshtein": {
+    "elapsed_seconds": 0.019568600109778345,
+    "chunks_examined": 271,
+    "chunks_with_matches": 89,
+    "top_chunks": [
+      {
+        "id": "decision_trees_4",
+        "document": "Decision Trees",
+        "score": 69.747,
+        "matches": {
+          "decison": {
+            "matched_as": "decision",
+            "occurrences": 4
+          },
+          "trees": {
+            "matched_as": "trees",
+            "occurrences": 3
+          },
+          "classificaton": {
+            "matched_as": "classification",
+            "occurrences": 2
+          }
+        },
+        "text": "the globally optimal decision tree. This can be mitigated by training multiple trees in an ensemble learner, where the features and samples are randomly sampled with replacement. There are concepts that are hard to learn because decision trees do not express them easily, such as XOR, parity or multiplexer problems. Decision tree learners create biased trees if some classes dominate. It is therefore recommended to balance the dataset prior to fitting with the decision tree. 1.10.1. Classification DecisionTreeClassifier is a class capable of performing multi-class classification on a dataset. As with other classifiers, DecisionTreeClassifier takes as input two arrays: an array X, sparse or dense, of shape (n_samples, n_features) holding the training samples, and an array Y of integer values, shape (n_samples,) , holding the class labels for the training samples: >>> from sklearn import tree >>> X = [[ 0 , 0 ], [ 1 , 1 ]] >>> Y = [ 0 , 1 ] >>> clf = tree . DecisionTreeClassifier () >>> clf = clf . fit ( X , Y ) After being fitted, the model"
+      },
+      {
+        "id": "decision_trees_1",
+        "document": "Decision Trees",
+        "score": 68.9137,
+        "matches": {
+          "decison": {
+            "matched_as": "decision",
+            "occurrences": 7
+          },
+          "trees": {
+            "matched_as": "trees",
+            "occurrences": 5
+          },
+          "classificaton": {
+            "matched_as": "classification",
+            "occurrences": 1
+          }
+        },
+        "text": "1.10. Decision Trees Decision Trees (DTs) are a non-parametric supervised learning method used for classification and regression . The goal is to create a model that predicts the value of a target variable by learning simple decision rules inferred from the data features. A tree can be seen as a piecewise constant approximation. For instance, in the example below, decision trees learn from data to approximate a sine curve with a set of if-then-else decision rules. The deeper the tree, the more complex the decision rules and the fitter the model. Some advantages of decision trees are: Simple to understand and to interpret. Trees can be visualized. Requires little data preparation. Other techniques often require data normalization, dummy variables need to be created and blank values to be removed. Some tree and algorithm combinations support missing values . The cost of using the tree (i.e., predicting data) is logarithmic in the number of data points used to train the tree. Able to handle both numerical and categorical data. However, the scikit-learn implementation does not support categorical variables for now. Other"
+      },
+      {
+        "id": "decision_trees_8",
+        "document": "Decision Trees",
+        "score": 68.0804,
+        "matches": {
+          "decison": {
+            "matched_as": "decision",
+            "occurrences": 8
+          },
+          "trees": {
+            "matched_as": "trees",
+            "occurrences": 2
+          },
+          "classificaton": {
+            "matched_as": "classification",
+            "occurrences": 1
+          }
+        },
+        "text": "is more compact: >>> from sklearn.datasets import load_iris >>> from sklearn.tree import DecisionTreeClassifier >>> from sklearn.tree import export_text >>> iris = load_iris () >>> decision_tree = DecisionTreeClassifier ( random_state = 0 , max_depth = 2 ) >>> decision_tree = decision_tree . fit ( iris . data , iris . target ) >>> r = export_text ( decision_tree , feature_names = iris [ 'feature_names' ]) >>> print ( r ) |--- petal width (cm) <= 0.80 | |--- class: 0 |--- petal width (cm) > 0.80 | |--- petal width (cm) <= 1.75 | | |--- class: 1 | |--- petal width (cm) > 1.75 | | |--- class: 2 Examples Plot the decision surface of decision trees trained on the iris dataset Understanding the decision tree structure 1.10.2. Regression Decision trees can also be applied to regression problems, using the DecisionTreeRegressor class. As in the classification setting, the fit method will take as argument arrays X and y, only that in this case y is expected to have floating point values instead of integer values: >>> from sklearn import tree"
+      },
+      {
+        "id": "model_evaluation_18",
+        "document": "Model Evaluation",
+        "score": 68.0804,
+        "matches": {
+          "decison": {
+            "matched_as": "decision",
+            "occurrences": 2
+          },
+          "work": {
+            "matched_as": "work",
+            "occurrences": 1
+          },
+          "classificaton": {
+            "matched_as": "classification",
+            "occurrences": 5
+          }
+        },
+        "text": "cv_results [ 'test_fn' ]) [0 1 2 3 2] 3.4.4. Classification metrics The sklearn.metrics module implements several loss, score, and utility functions to measure classification performance. Some metrics might require probability estimates of the positive class or non-thresholded decision values (as returned by decision_function on some classifiers). Most implementations allow each sample to provide a weighted contribution to the overall score, through the sample_weight parameter. Some of these are restricted to the binary classification case: precision_recall_curve (y_true, y_score, *[, ...]) Compute precision-recall pairs for different probability thresholds. roc_curve (y_true, y_score, *[, pos_label, ...]) Compute Receiver operating characteristic (ROC). class_likelihood_ratios (y_true, y_pred, *[, ...]) Compute binary classification positive and negative likelihood ratios. det_curve (y_true, y_score[, pos_label, ...]) Compute Detection Error Tradeoff (DET) for different probability thresholds. confusion_matrix_at_thresholds (y_true, ...) Calculate binary confusion matrix terms per classification threshold. Others also work in the multiclass case: balanced_accuracy_score (y_true, y_pred, *[, ...]) Compute the balanced accuracy. cohen_kappa_score (y1, y2, *[, labels, ...]) Compute Cohen's kappa: a statistic that measures inter-annotator agreement. confusion_matrix (y_true, y_pred, *[, ...]) Compute confusion matrix to evaluate the accuracy of"
+      },
+      {
+        "id": "decision_trees_11",
+        "document": "Decision Trees",
+        "score": 67.247,
+        "matches": {
+          "decison": {
+            "matched_as": "decision",
+            "occurrences": 1
+          },
+          "trees": {
+            "matched_as": "trees",
+            "occurrences": 3
+          },
+          "classificaton": {
+            "matched_as": "classification",
+            "occurrences": 1
+          }
+        },
+        "text": "a list of n_output arrays of class probabilities upon predict_proba . The use of multi-output trees for regression is demonstrated in Decision Tree Regression . In this example, the input X is a single real value and the outputs Y are the sine and cosine of X. The use of multi-output trees for classification is demonstrated in Face completion with a multi-output estimators . In this example, the inputs X are the pixels of the upper half of faces and the outputs Y are the pixels of the lower half of those faces. Examples Face completion with a multi-output estimators References M. Dumont et al, Fast multi-class image annotation with random subwindows and multiple output randomized trees , International Conference on Computer Vision Theory and Applications 2009 1.10.4. Complexity The following table shows the worst-case complexity estimates for a balanced binary tree: Splitter Total training cost Total inference cost “best” \\(\\mathcal{O}(n_{features} \\, n^2_{samples} \\log(n_{samples}))\\) \\(\\mathcal{O}(\\log(n_{samples}))\\) “random” \\(\\mathcal{O}(n_{features} \\, n^2_{samples})\\) \\(\\mathcal{O}(\\log(n_{samples}))\\) In general, the training cost to construct a balanced binary tree at each node is \\[\\mathcal{O}(n_{features}n_{samples}\\log (n_{samples})) + \\mathcal{O}(n_{features}n_{samples})\\] The"
+      }
+    ]
+  },
+  "jaccard": {
+    "elapsed_seconds": 0.10593279998283833,
+    "chunks_examined": 271,
+    "chunks_with_matches": 22,
+    "top_chunks": [
+      {
+        "id": "decision_trees_6",
+        "document": "Decision Trees",
+        "score": 4.3478,
+        "similarity": 0.043478,
+        "text": ">>> from sklearn.datasets import load_iris >>> from sklearn import tree >>> iris = load_iris () >>> X , y = iris . data , iris . target >>> clf = tree . DecisionTreeClassifier () >>> clf = clf . fit ( X , y ) Once trained, you can plot the tree with the plot_tree function: >>> tree . plot_tree ( clf ) [...] Alternative ways to export trees We can also export the tree in Graphviz format using the export_graphviz exporter. If you use the conda package manager, the graphviz binaries and the python package can be installed with conda install python-graphviz . Alternatively binaries for graphviz can be downloaded from the graphviz project homepage, and the Python wrapper installed from pypi with pip install graphviz . Below is an example graphviz export of the above tree trained on the entire iris dataset; the results are saved in an output file iris.pdf : >>> import graphviz >>> dot_data = tree . export_graphviz ( clf , out_file = None ) >>> graph = graphviz . Source ( dot_data ) >>>"
+      },
+      {
+        "id": "decision_trees_1",
+        "document": "Decision Trees",
+        "score": 3.8462,
+        "similarity": 0.038462,
+        "text": "1.10. Decision Trees Decision Trees (DTs) are a non-parametric supervised learning method used for classification and regression . The goal is to create a model that predicts the value of a target variable by learning simple decision rules inferred from the data features. A tree can be seen as a piecewise constant approximation. For instance, in the example below, decision trees learn from data to approximate a sine curve with a set of if-then-else decision rules. The deeper the tree, the more complex the decision rules and the fitter the model. Some advantages of decision trees are: Simple to understand and to interpret. Trees can be visualized. Requires little data preparation. Other techniques often require data normalization, dummy variables need to be created and blank values to be removed. Some tree and algorithm combinations support missing values . The cost of using the tree (i.e., predicting data) is logarithmic in the number of data points used to train the tree. Able to handle both numerical and categorical data. However, the scikit-learn implementation does not support categorical variables for now. Other"
+      },
+      {
+        "id": "decision_trees_11",
+        "document": "Decision Trees",
+        "score": 3.8462,
+        "similarity": 0.038462,
+        "text": "a list of n_output arrays of class probabilities upon predict_proba . The use of multi-output trees for regression is demonstrated in Decision Tree Regression . In this example, the input X is a single real value and the outputs Y are the sine and cosine of X. The use of multi-output trees for classification is demonstrated in Face completion with a multi-output estimators . In this example, the inputs X are the pixels of the upper half of faces and the outputs Y are the pixels of the lower half of those faces. Examples Face completion with a multi-output estimators References M. Dumont et al, Fast multi-class image annotation with random subwindows and multiple output randomized trees , International Conference on Computer Vision Theory and Applications 2009 1.10.4. Complexity The following table shows the worst-case complexity estimates for a balanced binary tree: Splitter Total training cost Total inference cost “best” \\(\\mathcal{O}(n_{features} \\, n^2_{samples} \\log(n_{samples}))\\) \\(\\mathcal{O}(\\log(n_{samples}))\\) “random” \\(\\mathcal{O}(n_{features} \\, n^2_{samples})\\) \\(\\mathcal{O}(\\log(n_{samples}))\\) In general, the training cost to construct a balanced binary tree at each node is \\[\\mathcal{O}(n_{features}n_{samples}\\log (n_{samples})) + \\mathcal{O}(n_{features}n_{samples})\\] The"
+      },
+      {
+        "id": "decision_trees_3",
+        "document": "Decision Trees",
+        "score": 3.8462,
+        "similarity": 0.038462,
+        "text": "that do not generalize the data well. This is called overfitting. Mechanisms such as pruning, setting the minimum number of samples required at a leaf node or setting the maximum depth of the tree are necessary to avoid this problem. Decision trees can be unstable because small variations in the data might result in a completely different tree being generated. This problem is mitigated by using decision trees within an ensemble. Predictions of decision trees are neither smooth nor continuous, but piecewise constant approximations as seen in the above figure. Therefore, they are not good at extrapolation. The problem of learning an optimal decision tree is known to be NP-complete under several aspects of optimality and even for simple concepts. Consequently, practical decision-tree learning algorithms are based on heuristic algorithms such as the greedy algorithm where locally optimal decisions are made at each node. Such algorithms cannot guarantee to return the globally optimal decision tree. This can be mitigated by training multiple trees in an ensemble learner, where the features and samples are randomly sampled with replacement. There are concepts"
+      },
+      {
+        "id": "model_evaluation_19",
+        "document": "Model Evaluation",
+        "score": 3.8462,
+        "similarity": 0.038462,
+        "text": "balanced accuracy. cohen_kappa_score (y1, y2, *[, labels, ...]) Compute Cohen's kappa: a statistic that measures inter-annotator agreement. confusion_matrix (y_true, y_pred, *[, ...]) Compute confusion matrix to evaluate the accuracy of a classification. hinge_loss (y_true, pred_decision, *[, ...]) Average hinge loss (non-regularized). matthews_corrcoef (y_true, y_pred, *[, ...]) Compute the Matthews correlation coefficient (MCC). roc_auc_score (y_true, y_score, *[, average, ...]) Compute Area Under the Receiver Operating Characteristic Curve (ROC AUC) from prediction scores. top_k_accuracy_score (y_true, y_score, *[, ...]) Top-k Accuracy classification score. Some also work in the multilabel case: accuracy_score (y_true, y_pred, *[, ...]) Accuracy classification score. classification_report (y_true, y_pred, *[, ...]) Build a text report showing the main classification metrics. f1_score (y_true, y_pred, *[, labels, ...]) Compute the F1 score, also known as balanced F-score or F-measure. fbeta_score (y_true, y_pred, *, beta[, ...]) Compute the F-beta score. hamming_loss (y_true, y_pred, *[, sample_weight]) Compute the average Hamming loss. jaccard_score (y_true, y_pred, *[, labels, ...]) Jaccard similarity coefficient score. log_loss (y_true[, y_proba, normalize, ...]) Log loss, aka logistic loss or cross-entropy loss. multilabel_confusion_matrix (y_true, y_pred, *) Compute a confusion matrix for each class"
+      }
+    ]
+  },
+  "hybrid": {
+    "elapsed_seconds": 0.1353071000194177,
+    "chunks_examined": 271,
+    "chunks_with_matches": 89,
+    "top_chunks": [
+      {
+        "id": "decision_trees_1",
+        "document": "Decision Trees",
+        "score": 50.8809,
+        "levenshtein_score": 68.9137,
+        "jaccard_score": 17.3913,
+        "text": "1.10. Decision Trees Decision Trees (DTs) are a non-parametric supervised learning method used for classification and regression . The goal is to create a model that predicts the value of a target variable by learning simple decision rules inferred from the data features. A tree can be seen as a piecewise constant approximation. For instance, in the example below, decision trees learn from data to approximate a sine curve with a set of if-then-else decision rules. The deeper the tree, the more complex the decision rules and the fitter the model. Some advantages of decision trees are: Simple to understand and to interpret. Trees can be visualized. Requires little data preparation. Other techniques often require data normalization, dummy variables need to be created and blank values to be removed. Some tree and algorithm combinations support missing values . The cost of using the tree (i.e., predicting data) is logarithmic in the number of data points used to train the tree. Able to handle both numerical and categorical data. However, the scikit-learn implementation does not support categorical variables for now. Other"
+      },
+      {
+        "id": "decision_trees_8",
+        "document": "Decision Trees",
+        "score": 49.8523,
+        "levenshtein_score": 68.0804,
+        "jaccard_score": 16.0,
+        "text": "is more compact: >>> from sklearn.datasets import load_iris >>> from sklearn.tree import DecisionTreeClassifier >>> from sklearn.tree import export_text >>> iris = load_iris () >>> decision_tree = DecisionTreeClassifier ( random_state = 0 , max_depth = 2 ) >>> decision_tree = decision_tree . fit ( iris . data , iris . target ) >>> r = export_text ( decision_tree , feature_names = iris [ 'feature_names' ]) >>> print ( r ) |--- petal width (cm) <= 0.80 | |--- class: 0 |--- petal width (cm) > 0.80 | |--- petal width (cm) <= 1.75 | | |--- class: 1 | |--- petal width (cm) > 1.75 | | |--- class: 2 Examples Plot the decision surface of decision trees trained on the iris dataset Understanding the decision tree structure 1.10.2. Regression Decision trees can also be applied to regression problems, using the DecisionTreeRegressor class. As in the classification setting, the fit method will take as argument arrays X and y, only that in this case y is expected to have floating point values instead of integer values: >>> from sklearn import tree"
+      },
+      {
+        "id": "decision_trees_4",
+        "document": "Decision Trees",
+        "score": 49.374,
+        "levenshtein_score": 69.747,
+        "jaccard_score": 11.5385,
+        "text": "the globally optimal decision tree. This can be mitigated by training multiple trees in an ensemble learner, where the features and samples are randomly sampled with replacement. There are concepts that are hard to learn because decision trees do not express them easily, such as XOR, parity or multiplexer problems. Decision tree learners create biased trees if some classes dominate. It is therefore recommended to balance the dataset prior to fitting with the decision tree. 1.10.1. Classification DecisionTreeClassifier is a class capable of performing multi-class classification on a dataset. As with other classifiers, DecisionTreeClassifier takes as input two arrays: an array X, sparse or dense, of shape (n_samples, n_features) holding the training samples, and an array Y of integer values, shape (n_samples,) , holding the class labels for the training samples: >>> from sklearn import tree >>> X = [[ 0 , 0 ], [ 1 , 1 ]] >>> Y = [ 0 , 1 ] >>> clf = tree . DecisionTreeClassifier () >>> clf = clf . fit ( X , Y ) After being fitted, the model"
+      },
+      {
+        "id": "decision_trees_29",
+        "document": "Decision Trees",
+        "score": 47.749,
+        "levenshtein_score": 67.247,
+        "jaccard_score": 11.5385,
+        "text": "on the criterion. Minimal cost-complexity pruning finds the subtree of \\(T\\) that minimizes \\(R_\\alpha(T)\\) . The cost complexity measure of a single node is \\(R_\\alpha(t)=R(t)+\\alpha\\) . The branch, \\(T_t\\) , is defined to be a tree where node \\(t\\) is its root. In general, the impurity of a node is greater than the sum of impurities of its terminal nodes, \\(R(T_t)<R(t)\\) . However, the cost complexity measure of a node, \\(t\\) , and its branch, \\(T_t\\) , can be equal depending on \\(\\alpha\\) . We define the effective \\(\\alpha\\) of a node to be the value where they are equal, \\(R_\\alpha(T_t)=R_\\alpha(t)\\) or \\(\\alpha_{eff}(t)=\\frac{R(t)-R(T_t)}{|T|-1}\\) . A non-terminal node with the smallest value of \\(\\alpha_{eff}\\) is the weakest link and will be pruned. This process stops when the pruned tree’s minimal \\(\\alpha_{eff}\\) is greater than the ccp_alpha parameter. Examples Post pruning decision trees with cost complexity pruning References [ BRE ] L. Breiman, J. Friedman, R. Olshen, and C. Stone. Classification and Regression Trees. Wadsworth, Belmont, CA, 1984. https://en.wikipedia.org/wiki/Decision_tree_learning https://en.wikipedia.org/wiki/Predictive_analytics J.R. Quinlan. C4. 5: programs for machine learning. Morgan Kaufmann, 1993. T."
+      },
+      {
+        "id": "model_evaluation_18",
+        "document": "Model Evaluation",
+        "score": 46.7523,
+        "levenshtein_score": 68.0804,
+        "jaccard_score": 7.1429,
+        "text": "cv_results [ 'test_fn' ]) [0 1 2 3 2] 3.4.4. Classification metrics The sklearn.metrics module implements several loss, score, and utility functions to measure classification performance. Some metrics might require probability estimates of the positive class or non-thresholded decision values (as returned by decision_function on some classifiers). Most implementations allow each sample to provide a weighted contribution to the overall score, through the sample_weight parameter. Some of these are restricted to the binary classification case: precision_recall_curve (y_true, y_score, *[, ...]) Compute precision-recall pairs for different probability thresholds. roc_curve (y_true, y_score, *[, pos_label, ...]) Compute Receiver operating characteristic (ROC). class_likelihood_ratios (y_true, y_pred, *[, ...]) Compute binary classification positive and negative likelihood ratios. det_curve (y_true, y_score[, pos_label, ...]) Compute Detection Error Tradeoff (DET) for different probability thresholds. confusion_matrix_at_thresholds (y_true, ...) Calculate binary confusion matrix terms per classification threshold. Others also work in the multiclass case: balanced_accuracy_score (y_true, y_pred, *[, ...]) Compute the balanced accuracy. cohen_kappa_score (y1, y2, *[, labels, ...]) Compute Cohen's kappa: a statistic that measures inter-annotator agreement. confusion_matrix (y_true, y_pred, *[, ...]) Compute confusion matrix to evaluate the accuracy of"
+      }
+    ]
+  }
+}

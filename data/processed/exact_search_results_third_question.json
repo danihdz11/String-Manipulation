@@ -1,0 +1,124 @@
+{
+  "question": "What is the difference between precision and recall?",
+  "patterns": [
+    "precision",
+    "recall"
+  ],
+  "same_results": true,
+  "kmp": {
+    "algorithm": "kmp",
+    "elapsed_seconds": 0.06563520000781864,
+    "chunks_examined": 271,
+    "chunks_with_matches": 33,
+    "top_chunks": [
+      {
+        "id": "cross_validation_11",
+        "document": "Cross-validation",
+        "score": 46,
+        "matches": {
+          "precision": 3,
+          "recall": 3
+        },
+        "text": ") >>> sorted ( scores . keys ()) ['fit_time', 'score_time', 'test_precision_macro', 'test_recall_macro'] >>> scores [ 'test_recall_macro' ] array([0.96, 1., 0.96, 0.96, 1.]) Or as a dict mapping scorer name to a predefined or custom scoring function: >>> from sklearn.metrics import make_scorer >>> scoring = { 'prec_macro' : 'precision_macro' , ... 'rec_macro' : make_scorer ( recall_score , average = 'macro' )} >>> scores = cross_validate ( clf , X , y , scoring = scoring , ... cv = 5 , return_train_score = True ) >>> sorted ( scores . keys ()) ['fit_time', 'score_time', 'test_prec_macro', 'test_rec_macro', 'train_prec_macro', 'train_rec_macro'] >>> scores [ 'train_rec_macro' ] array([0.97, 0.97, 0.99, 0.98, 0.98]) Here is an example of cross_validate using a single metric: >>> scores = cross_validate ( clf , X , y , ... scoring = 'precision_macro' , cv = 5 , ... return_estimator = True ) >>> sorted ( scores . keys ()) ['estimator', 'fit_time', 'score_time', 'test_score'] 3.1.1.2. Obtaining predictions by cross-validation The function cross_val_predict has a similar interface to cross_val_score , but returns, for each element in the input, the prediction that was"
+      },
+      {
+        "id": "model_evaluation_20",
+        "document": "Model Evaluation",
+        "score": 46,
+        "matches": {
+          "precision": 6,
+          "recall": 4
+        },
+        "text": "labels, ...]) Jaccard similarity coefficient score. log_loss (y_true[, y_proba, normalize, ...]) Log loss, aka logistic loss or cross-entropy loss. multilabel_confusion_matrix (y_true, y_pred, *) Compute a confusion matrix for each class or sample. precision_recall_fscore_support (y_true, ...) Compute precision, recall, F-measure and support for each class. precision_score (y_true, y_pred, *[, labels, ...]) Compute the precision. recall_score (y_true, y_pred, *[, labels, ...]) Compute the recall. roc_auc_score (y_true, y_score, *[, average, ...]) Compute Area Under the Receiver Operating Characteristic Curve (ROC AUC) from prediction scores. zero_one_loss (y_true, y_pred, *[, ...]) Zero-one classification loss. d2_log_loss_score (y_true[, y_proba, ...]) \\(D^2\\) score function, fraction of log loss explained. And some work with binary and multilabel (but not multiclass) problems: average_precision_score (y_true, y_score, *) Compute average precision (AP) from prediction scores. In the following sub-sections, we will describe each of those functions, preceded by some notes on common API and metric definition. 3.4.4.1. From binary to multiclass and multilabel Some metrics are essentially defined for binary classification tasks (e.g. f1_score , roc_auc_score ). In these cases, by default only the positive label is evaluated, assuming by default that"
+      },
+      {
+        "id": "model_evaluation_36",
+        "document": "Model Evaluation",
+        "score": 46,
+        "matches": {
+          "precision": 3,
+          "recall": 3
+        },
+        "text": "( np . array ([[ 0 , 1 ], [ 1 , 1 ]]), np . zeros (( 2 , 2 ))) 0.75 Note In multiclass classification, the Hamming loss corresponds to the Hamming distance between y_true and y_pred which is similar to the Zero one loss function. However, while zero-one loss penalizes prediction sets that do not strictly match true sets, the Hamming loss penalizes individual labels. Thus the Hamming loss, upper bounded by the zero-one loss, is always between zero and one, inclusive; and predicting a proper subset or superset of the true labels will give a Hamming loss between zero and one, exclusive. 3.4.4.9. Precision, recall and F-measures Intuitively, precision is the ability of the classifier not to label as positive a sample that is negative, and recall is the ability of the classifier to find all the positive samples. The F-measure ( \\(F_\\beta\\) and \\(F_1\\) measures) can be interpreted as a weighted harmonic mean of the precision and recall. A \\(F_\\beta\\) measure reaches its best value at 1 and its worst score at 0. With \\(\\beta"
+      },
+      {
+        "id": "model_evaluation_37",
+        "document": "Model Evaluation",
+        "score": 46,
+        "matches": {
+          "precision": 10,
+          "recall": 7
+        },
+        "text": "can be interpreted as a weighted harmonic mean of the precision and recall. A \\(F_\\beta\\) measure reaches its best value at 1 and its worst score at 0. With \\(\\beta = 1\\) , \\(F_\\beta\\) and \\(F_1\\) are equivalent, and the recall and the precision are equally important. The precision_recall_curve computes a precision-recall curve from the ground truth label and a score given by the classifier by varying a decision threshold. The average_precision_score function computes the average precision (AP) from prediction scores. The value is between 0 and 1 and higher is better. AP is defined as \\[\\text{AP} = \\sum_n (R_n - R_{n-1}) P_n\\] where \\(P_n\\) and \\(R_n\\) are the precision and recall at the nth threshold. With random predictions, the AP is the fraction of positive samples. References [Manning2008] and [Everingham2010] present alternative variants of AP that interpolate the precision-recall curve. Currently, average_precision_score does not implement any interpolated variant. References [Davis2006] and [Flach2015] describe why a linear interpolation of points on the precision-recall curve provides an overly-optimistic measure of classifier performance. This linear interpolation is used when computing area under"
+      },
+      {
+        "id": "model_evaluation_38",
+        "document": "Model Evaluation",
+        "score": 46,
+        "matches": {
+          "precision": 12,
+          "recall": 9
+        },
+        "text": "[Davis2006] and [Flach2015] describe why a linear interpolation of points on the precision-recall curve provides an overly-optimistic measure of classifier performance. This linear interpolation is used when computing area under the curve with the trapezoidal rule in auc . [Chen2024] benchmarks different interpolation strategies to demonstrate the effects. Several functions allow you to analyze the precision, recall and F-measures score: average_precision_score (y_true, y_score, *) Compute average precision (AP) from prediction scores. f1_score (y_true, y_pred, *[, labels, ...]) Compute the F1 score, also known as balanced F-score or F-measure. fbeta_score (y_true, y_pred, *, beta[, ...]) Compute the F-beta score. precision_recall_curve (y_true, y_score, *[, ...]) Compute precision-recall pairs for different probability thresholds. precision_recall_fscore_support (y_true, ...) Compute precision, recall, F-measure and support for each class. precision_score (y_true, y_pred, *[, labels, ...]) Compute the precision. recall_score (y_true, y_pred, *[, labels, ...]) Compute the recall. Note that the precision_recall_curve function is restricted to the binary case. The average_precision_score function supports multiclass and multilabel formats by computing each class score in a One-vs-the-rest (OvR) fashion and averaging them or not depending of its average argument value."
+      }
+    ]
+  },
+  "z": {
+    "algorithm": "z",
+    "elapsed_seconds": 0.1501579000032507,
+    "chunks_examined": 271,
+    "chunks_with_matches": 33,
+    "top_chunks": [
+      {
+        "id": "cross_validation_11",
+        "document": "Cross-validation",
+        "score": 46,
+        "matches": {
+          "precision": 3,
+          "recall": 3
+        },
+        "text": ") >>> sorted ( scores . keys ()) ['fit_time', 'score_time', 'test_precision_macro', 'test_recall_macro'] >>> scores [ 'test_recall_macro' ] array([0.96, 1., 0.96, 0.96, 1.]) Or as a dict mapping scorer name to a predefined or custom scoring function: >>> from sklearn.metrics import make_scorer >>> scoring = { 'prec_macro' : 'precision_macro' , ... 'rec_macro' : make_scorer ( recall_score , average = 'macro' )} >>> scores = cross_validate ( clf , X , y , scoring = scoring , ... cv = 5 , return_train_score = True ) >>> sorted ( scores . keys ()) ['fit_time', 'score_time', 'test_prec_macro', 'test_rec_macro', 'train_prec_macro', 'train_rec_macro'] >>> scores [ 'train_rec_macro' ] array([0.97, 0.97, 0.99, 0.98, 0.98]) Here is an example of cross_validate using a single metric: >>> scores = cross_validate ( clf , X , y , ... scoring = 'precision_macro' , cv = 5 , ... return_estimator = True ) >>> sorted ( scores . keys ()) ['estimator', 'fit_time', 'score_time', 'test_score'] 3.1.1.2. Obtaining predictions by cross-validation The function cross_val_predict has a similar interface to cross_val_score , but returns, for each element in the input, the prediction that was"
+      },
+      {
+        "id": "model_evaluation_20",
+        "document": "Model Evaluation",
+        "score": 46,
+        "matches": {
+          "precision": 6,
+          "recall": 4
+        },
+        "text": "labels, ...]) Jaccard similarity coefficient score. log_loss (y_true[, y_proba, normalize, ...]) Log loss, aka logistic loss or cross-entropy loss. multilabel_confusion_matrix (y_true, y_pred, *) Compute a confusion matrix for each class or sample. precision_recall_fscore_support (y_true, ...) Compute precision, recall, F-measure and support for each class. precision_score (y_true, y_pred, *[, labels, ...]) Compute the precision. recall_score (y_true, y_pred, *[, labels, ...]) Compute the recall. roc_auc_score (y_true, y_score, *[, average, ...]) Compute Area Under the Receiver Operating Characteristic Curve (ROC AUC) from prediction scores. zero_one_loss (y_true, y_pred, *[, ...]) Zero-one classification loss. d2_log_loss_score (y_true[, y_proba, ...]) \\(D^2\\) score function, fraction of log loss explained. And some work with binary and multilabel (but not multiclass) problems: average_precision_score (y_true, y_score, *) Compute average precision (AP) from prediction scores. In the following sub-sections, we will describe each of those functions, preceded by some notes on common API and metric definition. 3.4.4.1. From binary to multiclass and multilabel Some metrics are essentially defined for binary classification tasks (e.g. f1_score , roc_auc_score ). In these cases, by default only the positive label is evaluated, assuming by default that"
+      },
+      {
+        "id": "model_evaluation_36",
+        "document": "Model Evaluation",
+        "score": 46,
+        "matches": {
+          "precision": 3,
+          "recall": 3
+        },
+        "text": "( np . array ([[ 0 , 1 ], [ 1 , 1 ]]), np . zeros (( 2 , 2 ))) 0.75 Note In multiclass classification, the Hamming loss corresponds to the Hamming distance between y_true and y_pred which is similar to the Zero one loss function. However, while zero-one loss penalizes prediction sets that do not strictly match true sets, the Hamming loss penalizes individual labels. Thus the Hamming loss, upper bounded by the zero-one loss, is always between zero and one, inclusive; and predicting a proper subset or superset of the true labels will give a Hamming loss between zero and one, exclusive. 3.4.4.9. Precision, recall and F-measures Intuitively, precision is the ability of the classifier not to label as positive a sample that is negative, and recall is the ability of the classifier to find all the positive samples. The F-measure ( \\(F_\\beta\\) and \\(F_1\\) measures) can be interpreted as a weighted harmonic mean of the precision and recall. A \\(F_\\beta\\) measure reaches its best value at 1 and its worst score at 0. With \\(\\beta"
+      },
+      {
+        "id": "model_evaluation_37",
+        "document": "Model Evaluation",
+        "score": 46,
+        "matches": {
+          "precision": 10,
+          "recall": 7
+        },
+        "text": "can be interpreted as a weighted harmonic mean of the precision and recall. A \\(F_\\beta\\) measure reaches its best value at 1 and its worst score at 0. With \\(\\beta = 1\\) , \\(F_\\beta\\) and \\(F_1\\) are equivalent, and the recall and the precision are equally important. The precision_recall_curve computes a precision-recall curve from the ground truth label and a score given by the classifier by varying a decision threshold. The average_precision_score function computes the average precision (AP) from prediction scores. The value is between 0 and 1 and higher is better. AP is defined as \\[\\text{AP} = \\sum_n (R_n - R_{n-1}) P_n\\] where \\(P_n\\) and \\(R_n\\) are the precision and recall at the nth threshold. With random predictions, the AP is the fraction of positive samples. References [Manning2008] and [Everingham2010] present alternative variants of AP that interpolate the precision-recall curve. Currently, average_precision_score does not implement any interpolated variant. References [Davis2006] and [Flach2015] describe why a linear interpolation of points on the precision-recall curve provides an overly-optimistic measure of classifier performance. This linear interpolation is used when computing area under"
+      },
+      {
+        "id": "model_evaluation_38",
+        "document": "Model Evaluation",
+        "score": 46,
+        "matches": {
+          "precision": 12,
+          "recall": 9
+        },
+        "text": "[Davis2006] and [Flach2015] describe why a linear interpolation of points on the precision-recall curve provides an overly-optimistic measure of classifier performance. This linear interpolation is used when computing area under the curve with the trapezoidal rule in auc . [Chen2024] benchmarks different interpolation strategies to demonstrate the effects. Several functions allow you to analyze the precision, recall and F-measures score: average_precision_score (y_true, y_score, *) Compute average precision (AP) from prediction scores. f1_score (y_true, y_pred, *[, labels, ...]) Compute the F1 score, also known as balanced F-score or F-measure. fbeta_score (y_true, y_pred, *, beta[, ...]) Compute the F-beta score. precision_recall_curve (y_true, y_score, *[, ...]) Compute precision-recall pairs for different probability thresholds. precision_recall_fscore_support (y_true, ...) Compute precision, recall, F-measure and support for each class. precision_score (y_true, y_pred, *[, labels, ...]) Compute the precision. recall_score (y_true, y_pred, *[, labels, ...]) Compute the recall. Note that the precision_recall_curve function is restricted to the binary case. The average_precision_score function supports multiclass and multilabel formats by computing each class score in a One-vs-the-rest (OvR) fashion and averaging them or not depending of its average argument value."
+      }
+    ]
+  }
+}

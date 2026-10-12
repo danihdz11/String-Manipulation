@@ -1,0 +1,133 @@
+{
+  "question": "what is comprison?",
+  "query_terms": [
+    "comprison"
+  ],
+  "corrections": [
+    {
+      "original": "comprison",
+      "corrected": "comparison",
+      "distance": 1
+    }
+  ],
+  "levenshtein": {
+    "elapsed_seconds": 0.021242499933578074,
+    "chunks_examined": 271,
+    "chunks_with_matches": 15,
+    "top_chunks": [
+      {
+        "id": "model_evaluation_70",
+        "document": "Model Evaluation",
+        "score": 91.0,
+        "matches": {
+          "comprison": {
+            "matched_as": "comparison",
+            "occurrences": 3
+          }
+        },
+        "text": "a DET plot. With False Negative Rate being “inverse” to True Positive Rate the point of perfection for DET curves is the origin (in contrast to the top left corner for ROC curves). Applications and limitations DET curves are intuitive to read and hence allow quick visual assessment of a classifier’s performance. Additionally DET curves can be consulted for threshold analysis and operating point selection. This is particularly helpful if a comparison of error types is required. On the other hand DET curves do not provide their metric as a single number. Therefore for either automated evaluation or comparison to other classification tasks metrics like the derived area under ROC curve might be better suited. Examples See Detection error tradeoff (DET) curve for an example comparison between receiver operating characteristic (ROC) curves and Detection error tradeoff (DET) curves. References [ WikipediaDET2017 ] Wikipedia contributors. Detection error tradeoff. Wikipedia, The Free Encyclopedia. September 4, 2017, 23:33 UTC. Available at: https://en.wikipedia.org/w/index.php?title=Detection_error_tradeoff&oldid=798982054 . Accessed February 19, 2018. [ Martin1997 ] A. Martin, G. Doddington, T. Kamm, M. Ordowski, and M. Przybocki, The DET"
+      },
+      {
+        "id": "clustering_11",
+        "document": "Clustering",
+        "score": 87.6667,
+        "matches": {
+          "comprison": {
+            "matched_as": "comparison",
+            "occurrences": 2
+          }
+        },
+        "text": "number of iterations is reached. MiniBatchKMeans converges faster than KMeans , but the quality of the results is reduced. In practice this difference in quality can be quite small, as shown in the example and cited reference. Examples Comparison of the K-Means and MiniBatchKMeans clustering algorithms : Comparison of KMeans and MiniBatchKMeans Clustering text documents using k-means : Document clustering using KMeans and MiniBatchKMeans based on sparse data Online learning of a dictionary of parts of faces References “Web Scale K-Means clustering” D. Sculley, Proceedings of the 19th international conference on World wide web (2010). 2.3.3. Affinity Propagation AffinityPropagation creates clusters by sending messages between pairs of samples until convergence. A dataset is then described using a small number of exemplars, which are identified as those most representative of other samples. The messages sent between pairs represent the suitability for one sample to be the exemplar of the other, which is updated in response to the values from other pairs. This updating happens iteratively until convergence, at which point the final exemplars are chosen, and hence the final clustering is"
+      },
+      {
+        "id": "clustering_28",
+        "document": "Clustering",
+        "score": 87.6667,
+        "matches": {
+          "comprison": {
+            "matched_as": "comparison",
+            "occurrences": 2
+          }
+        },
+        "text": "small compared to the number of data points. This variant also does not produce empty clusters. There exist two strategies for selecting the cluster to split: bisecting_strategy=\"largest_cluster\" selects the cluster having the most points bisecting_strategy=\"biggest_inertia\" selects the cluster with biggest inertia (cluster with biggest Sum of Squared Errors within) Picking by largest amount of data points in most cases produces result as accurate as picking by inertia and is faster (especially for larger amount of data points, where calculating error may be costly). Picking by largest amount of data points will also likely produce clusters of similar sizes while KMeans is known to produce clusters of different sizes. Difference between Bisecting K-Means and regular K-Means can be seen on example Bisecting K-Means and Regular K-Means Performance Comparison . While the regular K-Means algorithm tends to create non-related clusters, clusters from Bisecting K-Means are well ordered and create quite a visible hierarchy. References “A Comparison of Document Clustering Techniques” Michael Steinbach, George Karypis and Vipin Kumar, Department of Computer Science and Engineering, University of Minnesota (June 2000) “Performance Analysis of K-Means"
+      },
+      {
+        "id": "clustering_58",
+        "document": "Clustering",
+        "score": 87.6667,
+        "matches": {
+          "comprison": {
+            "matched_as": "comparison",
+            "occurrences": 2
+          }
+        },
+        "text": "and arithmetic means; we use these more broadly common names. References Strehl, Alexander, and Joydeep Ghosh (2002). “Cluster ensembles - a knowledge reuse framework for combining multiple partitions”. Journal of Machine Learning Research 3: 583-617. doi:10.1162/153244303321897735 . Wikipedia entry for the (normalized) Mutual Information Wikipedia entry for the Adjusted Mutual Information [ VEB2009 ] Vinh, Epps, and Bailey, (2009). “Information theoretic measures for clusterings comparison”. Proceedings of the 26th Annual International Conference on Machine Learning - ICML ‘09. doi:10.1145/1553374.1553511 . ISBN 9781605585161. [ VEB2010 ] Vinh, Epps, and Bailey, (2010). “Information Theoretic Measures for Clusterings Comparison: Variants, Properties, Normalization and Correction for Chance”. JMLR < https://jmlr.csail.mit.edu/papers/volume11/vinh10a/vinh10a.pdf > [ YAT2016 ] Yang, Algesheimer, and Tessone, (2016). “A comparative analysis of community detection algorithms on artificial networks”. Scientific Reports 6: 30750. doi:10.1038/srep30750 . 2.3.11.3. Homogeneity, completeness and V-measure Given the knowledge of the ground truth class assignments of the samples, it is possible to define some intuitive metric using conditional entropy analysis. In particular Rosenberg and Hirschberg (2007) define the following two desirable objectives for any cluster assignment: homogeneity : each cluster"
+      },
+      {
+        "id": "clustering_1",
+        "document": "Clustering",
+        "score": 84.3333,
+        "matches": {
+          "comprison": {
+            "matched_as": "comparison",
+            "occurrences": 1
+          }
+        },
+        "text": "2.3. Clustering Clustering of unlabeled data can be performed with the module sklearn.cluster . Each clustering algorithm comes in two variants: a class, that implements the fit method to learn the clusters on train data, and a function, that, given train data, returns an array of integer labels corresponding to the different clusters. For the class, the labels over the training data can be found in the labels_ attribute. 2.3.1. Overview of clustering methods A comparison of the clustering algorithms in scikit-learn Method name Parameters Scalability Usecase Geometry (metric used) K-Means number of clusters Very large n_samples , medium n_clusters with MiniBatch code General-purpose, even cluster size, flat geometry, not too many clusters, inductive Distances between points Affinity propagation damping, sample preference Not scalable with n_samples Many clusters, uneven cluster size, non-flat geometry, inductive Graph distance (e.g. nearest-neighbor graph) Mean-shift bandwidth Not scalable with n_samples Many clusters, uneven cluster size, non-flat geometry, inductive Distances between points Spectral clustering number of clusters Medium n_samples , small n_clusters Few clusters, even cluster size, non-flat geometry, transductive Graph distance (e.g. nearest-neighbor graph) Ward"
+      }
+    ]
+  },
+  "jaccard": {
+    "elapsed_seconds": 0.057848800090141594,
+    "chunks_examined": 271,
+    "chunks_with_matches": 0,
+    "top_chunks": []
+  },
+  "hybrid": {
+    "elapsed_seconds": 0.07765959994867444,
+    "chunks_examined": 271,
+    "chunks_with_matches": 15,
+    "top_chunks": [
+      {
+        "id": "model_evaluation_70",
+        "document": "Model Evaluation",
+        "score": 64.15,
+        "levenshtein_score": 91.0,
+        "jaccard_score": 14.2857,
+        "text": "a DET plot. With False Negative Rate being “inverse” to True Positive Rate the point of perfection for DET curves is the origin (in contrast to the top left corner for ROC curves). Applications and limitations DET curves are intuitive to read and hence allow quick visual assessment of a classifier’s performance. Additionally DET curves can be consulted for threshold analysis and operating point selection. This is particularly helpful if a comparison of error types is required. On the other hand DET curves do not provide their metric as a single number. Therefore for either automated evaluation or comparison to other classification tasks metrics like the derived area under ROC curve might be better suited. Examples See Detection error tradeoff (DET) curve for an example comparison between receiver operating characteristic (ROC) curves and Detection error tradeoff (DET) curves. References [ WikipediaDET2017 ] Wikipedia contributors. Detection error tradeoff. Wikipedia, The Free Encyclopedia. September 4, 2017, 23:33 UTC. Available at: https://en.wikipedia.org/w/index.php?title=Detection_error_tradeoff&oldid=798982054 . Accessed February 19, 2018. [ Martin1997 ] A. Martin, G. Doddington, T. Kamm, M. Ordowski, and M. Przybocki, The DET"
+      },
+      {
+        "id": "clustering_11",
+        "document": "Clustering",
+        "score": 61.9834,
+        "levenshtein_score": 87.6667,
+        "jaccard_score": 14.2857,
+        "text": "number of iterations is reached. MiniBatchKMeans converges faster than KMeans , but the quality of the results is reduced. In practice this difference in quality can be quite small, as shown in the example and cited reference. Examples Comparison of the K-Means and MiniBatchKMeans clustering algorithms : Comparison of KMeans and MiniBatchKMeans Clustering text documents using k-means : Document clustering using KMeans and MiniBatchKMeans based on sparse data Online learning of a dictionary of parts of faces References “Web Scale K-Means clustering” D. Sculley, Proceedings of the 19th international conference on World wide web (2010). 2.3.3. Affinity Propagation AffinityPropagation creates clusters by sending messages between pairs of samples until convergence. A dataset is then described using a small number of exemplars, which are identified as those most representative of other samples. The messages sent between pairs represent the suitability for one sample to be the exemplar of the other, which is updated in response to the values from other pairs. This updating happens iteratively until convergence, at which point the final exemplars are chosen, and hence the final clustering is"
+      },
+      {
+        "id": "clustering_28",
+        "document": "Clustering",
+        "score": 61.9834,
+        "levenshtein_score": 87.6667,
+        "jaccard_score": 14.2857,
+        "text": "small compared to the number of data points. This variant also does not produce empty clusters. There exist two strategies for selecting the cluster to split: bisecting_strategy=\"largest_cluster\" selects the cluster having the most points bisecting_strategy=\"biggest_inertia\" selects the cluster with biggest inertia (cluster with biggest Sum of Squared Errors within) Picking by largest amount of data points in most cases produces result as accurate as picking by inertia and is faster (especially for larger amount of data points, where calculating error may be costly). Picking by largest amount of data points will also likely produce clusters of similar sizes while KMeans is known to produce clusters of different sizes. Difference between Bisecting K-Means and regular K-Means can be seen on example Bisecting K-Means and Regular K-Means Performance Comparison . While the regular K-Means algorithm tends to create non-related clusters, clusters from Bisecting K-Means are well ordered and create quite a visible hierarchy. References “A Comparison of Document Clustering Techniques” Michael Steinbach, George Karypis and Vipin Kumar, Department of Computer Science and Engineering, University of Minnesota (June 2000) “Performance Analysis of K-Means"
+      },
+      {
+        "id": "clustering_58",
+        "document": "Clustering",
+        "score": 61.9834,
+        "levenshtein_score": 87.6667,
+        "jaccard_score": 14.2857,
+        "text": "and arithmetic means; we use these more broadly common names. References Strehl, Alexander, and Joydeep Ghosh (2002). “Cluster ensembles - a knowledge reuse framework for combining multiple partitions”. Journal of Machine Learning Research 3: 583-617. doi:10.1162/153244303321897735 . Wikipedia entry for the (normalized) Mutual Information Wikipedia entry for the Adjusted Mutual Information [ VEB2009 ] Vinh, Epps, and Bailey, (2009). “Information theoretic measures for clusterings comparison”. Proceedings of the 26th Annual International Conference on Machine Learning - ICML ‘09. doi:10.1145/1553374.1553511 . ISBN 9781605585161. [ VEB2010 ] Vinh, Epps, and Bailey, (2010). “Information Theoretic Measures for Clusterings Comparison: Variants, Properties, Normalization and Correction for Chance”. JMLR < https://jmlr.csail.mit.edu/papers/volume11/vinh10a/vinh10a.pdf > [ YAT2016 ] Yang, Algesheimer, and Tessone, (2016). “A comparative analysis of community detection algorithms on artificial networks”. Scientific Reports 6: 30750. doi:10.1038/srep30750 . 2.3.11.3. Homogeneity, completeness and V-measure Given the knowledge of the ground truth class assignments of the samples, it is possible to define some intuitive metric using conditional entropy analysis. In particular Rosenberg and Hirschberg (2007) define the following two desirable objectives for any cluster assignment: homogeneity : each cluster"
+      },
+      {
+        "id": "clustering_1",
+        "document": "Clustering",
+        "score": 60.65,
+        "levenshtein_score": 84.3333,
+        "jaccard_score": 16.6667,
+        "text": "2.3. Clustering Clustering of unlabeled data can be performed with the module sklearn.cluster . Each clustering algorithm comes in two variants: a class, that implements the fit method to learn the clusters on train data, and a function, that, given train data, returns an array of integer labels corresponding to the different clusters. For the class, the labels over the training data can be found in the labels_ attribute. 2.3.1. Overview of clustering methods A comparison of the clustering algorithms in scikit-learn Method name Parameters Scalability Usecase Geometry (metric used) K-Means number of clusters Very large n_samples , medium n_clusters with MiniBatch code General-purpose, even cluster size, flat geometry, not too many clusters, inductive Distances between points Affinity propagation damping, sample preference Not scalable with n_samples Many clusters, uneven cluster size, non-flat geometry, inductive Graph distance (e.g. nearest-neighbor graph) Mean-shift bandwidth Not scalable with n_samples Many clusters, uneven cluster size, non-flat geometry, inductive Distances between points Spectral clustering number of clusters Medium n_samples , small n_clusters Few clusters, even cluster size, non-flat geometry, transductive Graph distance (e.g. nearest-neighbor graph) Ward"
+      }
+    ]
+  }
+}

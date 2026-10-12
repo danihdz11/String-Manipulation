@@ -1,0 +1,205 @@
+{
+  "question": "What is the difference between K-Meens and DBSCN?",
+  "query_terms": [
+    "k",
+    "meens",
+    "dbscn"
+  ],
+  "corrections": [
+    {
+      "original": "k",
+      "corrected": "k",
+      "distance": 0
+    },
+    {
+      "original": "meens",
+      "corrected": "means",
+      "distance": 1
+    },
+    {
+      "original": "dbscn",
+      "corrected": "dbscan",
+      "distance": 1
+    }
+  ],
+  "levenshtein": {
+    "elapsed_seconds": 0.011926700011827052,
+    "chunks_examined": 271,
+    "chunks_with_matches": 93,
+    "top_chunks": [
+      {
+        "id": "clustering_29",
+        "document": "Clustering",
+        "score": 90.0,
+        "matches": {
+          "k": {
+            "matched_as": "k",
+            "occurrences": 6
+          },
+          "meens": {
+            "matched_as": "means",
+            "occurrences": 4
+          },
+          "dbscn": {
+            "matched_as": "dbscan",
+            "occurrences": 4
+          }
+        },
+        "text": "hierarchy. References “A Comparison of Document Clustering Techniques” Michael Steinbach, George Karypis and Vipin Kumar, Department of Computer Science and Engineering, University of Minnesota (June 2000) “Performance Analysis of K-Means and Bisecting K-Means Algorithms in Weblog Data” K.Abirami and Dr.P.Mayilvahanan, International Journal of Emerging Technologies in Engineering Research (IJETER) Volume 4, Issue 8, (August 2016) “Bisecting K-means Algorithm Based on K-valued Self-determining and Clustering Center Optimization” Jian Di, Xinyue Gou School of Control and Computer Engineering,North China Electric Power University, Baoding, Hebei, China (August 2017) 2.3.7. DBSCAN The DBSCAN algorithm views clusters as areas of high density separated by areas of low density. Due to this rather generic view, clusters found by DBSCAN can be any shape, as opposed to k-means which assumes that clusters are convex shaped. The central component to the DBSCAN is the concept of core samples , which are samples that are in areas of high density. A cluster is therefore a set of core samples, each close to each other (measured by some distance measure) and a set of non-core samples that are close to"
+      },
+      {
+        "id": "clustering_10",
+        "document": "Clustering",
+        "score": 61.6667,
+        "matches": {
+          "k": {
+            "matched_as": "k",
+            "occurrences": 4
+          },
+          "meens": {
+            "matched_as": "means",
+            "occurrences": 4
+          }
+        },
+        "text": "in each training iteration. These mini-batches drastically reduce the amount of computation required to converge to a local solution. In contrast to other algorithms that reduce the convergence time of k-means, mini-batch k-means produces results that are generally only slightly worse than the standard algorithm. The algorithm iterates between two major steps, similar to vanilla k-means. In the first step, \\(b\\) samples are drawn randomly from the dataset, to form a mini-batch. These are then assigned to the nearest centroid. In the second step, the centroids are updated. In contrast to k-means, this is done on a per-sample basis. For each sample in the mini-batch, the assigned centroid is updated by taking the streaming average of the sample and all previous samples assigned to that centroid. This has the effect of decreasing the rate of change for a centroid over time. These steps are performed until convergence or a predetermined number of iterations is reached. MiniBatchKMeans converges faster than KMeans , but the quality of the results is reduced. In practice this difference in quality can be quite small, as"
+      },
+      {
+        "id": "clustering_11",
+        "document": "Clustering",
+        "score": 61.6667,
+        "matches": {
+          "k": {
+            "matched_as": "k",
+            "occurrences": 3
+          },
+          "meens": {
+            "matched_as": "means",
+            "occurrences": 3
+          }
+        },
+        "text": "number of iterations is reached. MiniBatchKMeans converges faster than KMeans , but the quality of the results is reduced. In practice this difference in quality can be quite small, as shown in the example and cited reference. Examples Comparison of the K-Means and MiniBatchKMeans clustering algorithms : Comparison of KMeans and MiniBatchKMeans Clustering text documents using k-means : Document clustering using KMeans and MiniBatchKMeans based on sparse data Online learning of a dictionary of parts of faces References “Web Scale K-Means clustering” D. Sculley, Proceedings of the 19th international conference on World wide web (2010). 2.3.3. Affinity Propagation AffinityPropagation creates clusters by sending messages between pairs of samples until convergence. A dataset is then described using a small number of exemplars, which are identified as those most representative of other samples. The messages sent between pairs represent the suitability for one sample to be the exemplar of the other, which is updated in response to the values from other pairs. This updating happens iteratively until convergence, at which point the final exemplars are chosen, and hence the final clustering is"
+      },
+      {
+        "id": "clustering_27",
+        "document": "Clustering",
+        "score": 61.6667,
+        "matches": {
+          "k": {
+            "matched_as": "k",
+            "occurrences": 3
+          },
+          "meens": {
+            "matched_as": "means",
+            "occurrences": 3
+          }
+        },
+        "text": "and minimizes that within each class. Examples Agglomerative clustering with different metrics 2.3.6.5. Bisecting K-Means The BisectingKMeans is an iterative variant of KMeans , using divisive hierarchical clustering. Instead of creating all centroids at once, centroids are picked progressively based on a previous clustering: a cluster is split into two new clusters repeatedly until the target number of clusters is reached. BisectingKMeans is more efficient than KMeans when the number of clusters is large since it only works on a subset of the data at each bisection while KMeans always works on the entire dataset. Although BisectingKMeans can’t benefit from the advantages of the \"k-means++\" initialization by design, it will still produce comparable results than KMeans(init=\"k-means++\") in terms of inertia at cheaper computational costs, and will likely produce better results than KMeans with a random initialization. This variant is more efficient to agglomerative clustering if the number of clusters is small compared to the number of data points. This variant also does not produce empty clusters. There exist two strategies for selecting the cluster to split: bisecting_strategy=\"largest_cluster\" selects the cluster"
+      },
+      {
+        "id": "clustering_28",
+        "document": "Clustering",
+        "score": 61.6667,
+        "matches": {
+          "k": {
+            "matched_as": "k",
+            "occurrences": 7
+          },
+          "meens": {
+            "matched_as": "means",
+            "occurrences": 7
+          }
+        },
+        "text": "small compared to the number of data points. This variant also does not produce empty clusters. There exist two strategies for selecting the cluster to split: bisecting_strategy=\"largest_cluster\" selects the cluster having the most points bisecting_strategy=\"biggest_inertia\" selects the cluster with biggest inertia (cluster with biggest Sum of Squared Errors within) Picking by largest amount of data points in most cases produces result as accurate as picking by inertia and is faster (especially for larger amount of data points, where calculating error may be costly). Picking by largest amount of data points will also likely produce clusters of similar sizes while KMeans is known to produce clusters of different sizes. Difference between Bisecting K-Means and regular K-Means can be seen on example Bisecting K-Means and Regular K-Means Performance Comparison . While the regular K-Means algorithm tends to create non-related clusters, clusters from Bisecting K-Means are well ordered and create quite a visible hierarchy. References “A Comparison of Document Clustering Techniques” Michael Steinbach, George Karypis and Vipin Kumar, Department of Computer Science and Engineering, University of Minnesota (June 2000) “Performance Analysis of K-Means"
+      }
+    ]
+  },
+  "jaccard": {
+    "elapsed_seconds": 0.08899359998758882,
+    "chunks_examined": 271,
+    "chunks_with_matches": 66,
+    "top_chunks": [
+      {
+        "id": "clustering_13",
+        "document": "Clustering",
+        "score": 7.6923,
+        "similarity": 0.076923,
+        "text": "Propagation most appropriate for small to medium sized datasets. Algorithm description The messages sent between points belong to one of two categories. The first is the responsibility \\(r(i, k)\\) , which is the accumulated evidence that sample \\(k\\) should be the exemplar for sample \\(i\\) . The second is the availability \\(a(i, k)\\) which is the accumulated evidence that sample \\(i\\) should choose sample \\(k\\) to be its exemplar, and considers the values for all other samples that \\(k\\) should be an exemplar. In this way, exemplars are chosen by samples if they are (1) similar enough to many samples and (2) chosen by many samples to be representative of themselves. More formally, the responsibility of a sample \\(k\\) to be the exemplar of sample \\(i\\) is given by: \\[r(i, k) \\leftarrow s(i, k) - max [ a(i, k') + s(i, k') \\forall k' \\neq k ]\\] Where \\(s(i, k)\\) is the similarity between samples \\(i\\) and \\(k\\) . The availability of sample \\(k\\) to be the exemplar of sample \\(i\\) is given by: \\[a(i, k) \\leftarrow min [0, r(k,"
+      },
+      {
+        "id": "clustering_14",
+        "document": "Clustering",
+        "score": 7.1429,
+        "similarity": 0.071429,
+        "text": "is the similarity between samples \\(i\\) and \\(k\\) . The availability of sample \\(k\\) to be the exemplar of sample \\(i\\) is given by: \\[a(i, k) \\leftarrow min [0, r(k, k) + \\sum_{i'~s.t.~i' \\notin \\{i, k\\}}{r(i', k)}]\\] To begin with, all values for \\(r\\) and \\(a\\) are set to zero, and the calculation of each iterates until convergence. As discussed above, in order to avoid numerical oscillations when updating the messages, the damping factor \\(\\lambda\\) is introduced to iteration process: \\[r_{t+1}(i, k) = \\lambda\\cdot r_{t}(i, k) + (1-\\lambda)\\cdot r_{t+1}(i, k)\\] \\[a_{t+1}(i, k) = \\lambda\\cdot a_{t}(i, k) + (1-\\lambda)\\cdot a_{t+1}(i, k)\\] where \\(t\\) indicates the iteration times. Examples Demo of affinity propagation clustering algorithm : Affinity Propagation on a synthetic 2D datasets with 3 classes Visualizing the stock market structure Affinity Propagation on financial time series to find groups of companies 2.3.4. Mean Shift MeanShift clustering aims to discover blobs in a smooth density of samples. It is a centroid based algorithm, which works by updating candidates for centroids to be the mean of the points within a given region. These"
+      },
+      {
+        "id": "clustering_16",
+        "document": "Clustering",
+        "score": 7.1429,
+        "similarity": 0.071429,
+        "text": "updating a centroid to be the mean of the samples within its neighborhood: \\[m(x) = \\frac{1}{|N(x)|} \\sum_{x_j \\in N(x)}x_j - x\\] In general, the equation for \\(m\\) depends on a kernel used for density estimation. The generic formula is: \\[m(x) = \\frac{\\sum_{x_j \\in N(x)}K(x_j - x)x_j}{\\sum_{x_j \\in N(x)}K(x_j - x)} - x\\] In our implementation, \\(K(x)\\) is equal to 1 if \\(x\\) is small enough and is equal to 0 otherwise. Effectively \\(K(y - x)\\) indicates whether \\(y\\) is in the neighborhood of \\(x\\) . The algorithm automatically sets the number of clusters, instead of relying on a parameter bandwidth , which dictates the size of the region to search through. This parameter can be set manually, but can be estimated using the provided estimate_bandwidth function, which is called if the bandwidth is not set. The algorithm is not highly scalable, as it requires multiple nearest neighbor searches during the execution of the algorithm. The algorithm is guaranteed to converge, however the algorithm will stop iterating when the change in centroids is small. Labelling a new sample is performed by"
+      },
+      {
+        "id": "clustering_68",
+        "document": "Clustering",
+        "score": 7.1429,
+        "similarity": 0.071429,
+        "text": "KMeans ( n_clusters = 3 , random_state = 1 ) . fit ( X ) >>> labels = kmeans_model . labels_ >>> metrics . calinski_harabasz_score ( X , labels ) 561.59 Mathematical formulation For a set of data \\(E\\) of size \\(n_E\\) which has been clustered into \\(k\\) clusters, the Calinski-Harabasz score \\(s\\) is defined as the ratio of the between-clusters dispersion mean and the within-cluster dispersion: \\[s = \\frac{\\mathrm{tr}(B_k)}{\\mathrm{tr}(W_k)} \\times \\frac{n_E - k}{k - 1}\\] where \\(\\mathrm{tr}(B_k)\\) is trace of the between group dispersion matrix and \\(\\mathrm{tr}(W_k)\\) is the trace of the within-cluster dispersion matrix defined by: \\[W_k = \\sum_{q=1}^k \\sum_{x \\in C_q} (x - c_q) (x - c_q)^T\\] \\[B_k = \\sum_{q=1}^k n_q (c_q - c_E) (c_q - c_E)^T\\] with \\(C_q\\) the set of points in cluster \\(q\\) , \\(c_q\\) the center of cluster \\(q\\) , \\(c_E\\) the center of \\(E\\) , and \\(n_q\\) the number of points in cluster \\(q\\) . References Caliński, T., & Harabasz, J. (1974). “A Dendrite Method for Cluster Analysis” . Communications in Statistics-theory and Methods 3: 1-27 . 2.3.11.7. Davies-Bouldin Index If the"
+      },
+      {
+        "id": "model_evaluation_24",
+        "document": "Model Evaluation",
+        "score": 7.1429,
+        "similarity": 0.071429,
+        "text": "as np >>> from sklearn.metrics import accuracy_score >>> y_pred = [ 0 , 2 , 1 , 3 ] >>> y_true = [ 0 , 1 , 2 , 3 ] >>> accuracy_score ( y_true , y_pred ) 0.5 >>> accuracy_score ( y_true , y_pred , normalize = False ) 2.0 In the multilabel case with binary label indicators: >>> accuracy_score ( np . array ([[ 0 , 1 ], [ 1 , 1 ]]), np . ones (( 2 , 2 ))) 0.5 Examples See Test with permutations the significance of a classification score for an example of accuracy score usage using permutations of the dataset. 3.4.4.3. Top-k accuracy score The top_k_accuracy_score function is a generalization of accuracy_score . The difference is that a prediction is considered correct as long as the true label is associated with one of the k highest predicted scores. accuracy_score is the special case of k = 1 . The function covers the binary and multiclass classification cases but not the multilabel case. If \\(\\hat{f}_{i,j}\\) is the predicted class for the \\(i\\) -th sample"
+      }
+    ]
+  },
+  "hybrid": {
+    "elapsed_seconds": 0.10250519996043295,
+    "chunks_examined": 271,
+    "chunks_with_matches": 93,
+    "top_chunks": [
+      {
+        "id": "clustering_29",
+        "document": "Clustering",
+        "score": 66.2778,
+        "levenshtein_score": 90.0,
+        "jaccard_score": 22.2222,
+        "text": "hierarchy. References “A Comparison of Document Clustering Techniques” Michael Steinbach, George Karypis and Vipin Kumar, Department of Computer Science and Engineering, University of Minnesota (June 2000) “Performance Analysis of K-Means and Bisecting K-Means Algorithms in Weblog Data” K.Abirami and Dr.P.Mayilvahanan, International Journal of Emerging Technologies in Engineering Research (IJETER) Volume 4, Issue 8, (August 2016) “Bisecting K-means Algorithm Based on K-valued Self-determining and Clustering Center Optimization” Jian Di, Xinyue Gou School of Control and Computer Engineering,North China Electric Power University, Baoding, Hebei, China (August 2017) 2.3.7. DBSCAN The DBSCAN algorithm views clusters as areas of high density separated by areas of low density. Due to this rather generic view, clusters found by DBSCAN can be any shape, as opposed to k-means which assumes that clusters are convex shaped. The central component to the DBSCAN is the concept of core samples , which are samples that are in areas of high density. A cluster is therefore a set of core samples, each close to each other (measured by some distance measure) and a set of non-core samples that are close to"
+      },
+      {
+        "id": "clustering_28",
+        "document": "Clustering",
+        "score": 47.5834,
+        "levenshtein_score": 61.6667,
+        "jaccard_score": 21.4286,
+        "text": "small compared to the number of data points. This variant also does not produce empty clusters. There exist two strategies for selecting the cluster to split: bisecting_strategy=\"largest_cluster\" selects the cluster having the most points bisecting_strategy=\"biggest_inertia\" selects the cluster with biggest inertia (cluster with biggest Sum of Squared Errors within) Picking by largest amount of data points in most cases produces result as accurate as picking by inertia and is faster (especially for larger amount of data points, where calculating error may be costly). Picking by largest amount of data points will also likely produce clusters of similar sizes while KMeans is known to produce clusters of different sizes. Difference between Bisecting K-Means and regular K-Means can be seen on example Bisecting K-Means and Regular K-Means Performance Comparison . While the regular K-Means algorithm tends to create non-related clusters, clusters from Bisecting K-Means are well ordered and create quite a visible hierarchy. References “A Comparison of Document Clustering Techniques” Michael Steinbach, George Karypis and Vipin Kumar, Department of Computer Science and Engineering, University of Minnesota (June 2000) “Performance Analysis of K-Means"
+      },
+      {
+        "id": "clustering_9",
+        "document": "Clustering",
+        "score": 47.5834,
+        "levenshtein_score": 61.6667,
+        "jaccard_score": 21.4286,
+        "text": "seeds for other clustering algorithms. 2.3.2.1. Low-level parallelism KMeans benefits from OpenMP based parallelism through Cython. Small chunks of data (256 samples) are processed in parallel, which in addition yields a low memory footprint. For more details on how to control the number of threads, please refer to our Parallelism notes. Examples Demonstration of k-means assumptions : Demonstrating when k-means performs intuitively and when it does not A demo of K-Means clustering on the handwritten digits data : Clustering handwritten digits References “k-means++: The advantages of careful seeding” Arthur, David, and Sergei Vassilvitskii, Proceedings of the eighteenth annual ACM-SIAM symposium on Discrete algorithms , Society for Industrial and Applied Mathematics (2007) 2.3.2.2. Mini Batch K-Means The MiniBatchKMeans is a variant of the KMeans algorithm which uses mini-batches to reduce the computation time, while still attempting to optimise the same objective function. Mini-batches are subsets of the input data, randomly sampled in each training iteration. These mini-batches drastically reduce the amount of computation required to converge to a local solution. In contrast to other algorithms that reduce the convergence time of"
+      },
+      {
+        "id": "clustering_10",
+        "document": "Clustering",
+        "score": 46.6459,
+        "levenshtein_score": 61.6667,
+        "jaccard_score": 18.75,
+        "text": "in each training iteration. These mini-batches drastically reduce the amount of computation required to converge to a local solution. In contrast to other algorithms that reduce the convergence time of k-means, mini-batch k-means produces results that are generally only slightly worse than the standard algorithm. The algorithm iterates between two major steps, similar to vanilla k-means. In the first step, \\(b\\) samples are drawn randomly from the dataset, to form a mini-batch. These are then assigned to the nearest centroid. In the second step, the centroids are updated. In contrast to k-means, this is done on a per-sample basis. For each sample in the mini-batch, the assigned centroid is updated by taking the streaming average of the sample and all previous samples assigned to that centroid. This has the effect of decreasing the rate of change for a centroid over time. These steps are performed until convergence or a predetermined number of iterations is reached. MiniBatchKMeans converges faster than KMeans , but the quality of the results is reduced. In practice this difference in quality can be quite small, as"
+      },
+      {
+        "id": "clustering_11",
+        "document": "Clustering",
+        "score": 46.6459,
+        "levenshtein_score": 61.6667,
+        "jaccard_score": 18.75,
+        "text": "number of iterations is reached. MiniBatchKMeans converges faster than KMeans , but the quality of the results is reduced. In practice this difference in quality can be quite small, as shown in the example and cited reference. Examples Comparison of the K-Means and MiniBatchKMeans clustering algorithms : Comparison of KMeans and MiniBatchKMeans Clustering text documents using k-means : Document clustering using KMeans and MiniBatchKMeans based on sparse data Online learning of a dictionary of parts of faces References “Web Scale K-Means clustering” D. Sculley, Proceedings of the 19th international conference on World wide web (2010). 2.3.3. Affinity Propagation AffinityPropagation creates clusters by sending messages between pairs of samples until convergence. A dataset is then described using a small number of exemplars, which are identified as those most representative of other samples. The messages sent between pairs represent the suitability for one sample to be the exemplar of the other, which is updated in response to the values from other pairs. This updating happens iteratively until convergence, at which point the final exemplars are chosen, and hence the final clustering is"
+      }
+    ]
+  }
+}
