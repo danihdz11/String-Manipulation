@@ -1,0 +1,7 @@
+method,context_variant,answer_terms_in_context,avg_context_words,questions
+hybrid,stage5_selection,0.865,366.4,37
+hybrid,top1,0.838,199.7,37
+hybrid,top3_raw,0.946,570,37
+kmp,stage5_selection,0.757,327.4,37
+kmp,top1,0.649,178.4,37
+kmp,top3_raw,0.811,519.9,37
