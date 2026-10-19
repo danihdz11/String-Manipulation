@@ -1,15 +1,4 @@
-"""Stage 6: comparison of exact (KMP / Z-function) vs approximate (Levenshtein / Jaccard / hybrid) retrieval.
 
-Keep this file next to stage3.py, stage4.py and stage5.py.
-
-Usage:
-    python stage6.py                 # everything (timings, quality, scaling, context, LLM)
-    python stage6.py --no-llm        # skip the language-model comparison (the slowest part)
-    python stage6.py --no-scaling    # skip the collection-size experiment
-    python stage6.py --repeats 3     # fewer timing repetitions
-
-Optional for plots: pip install matplotlib
-"""
 import argparse
 import csv
 import json
@@ -47,11 +36,10 @@ QUALITY_METHODS = ["kmp", "levenshtein", "jaccard", "hybrid"]   # Z-function giv
 
 DT = ["decision tree", "decision trees"]
 
-# (id, category, question, must, use_llm)
-# `must` = list of term groups. A chunk is considered RELEVANT when, for every group,
-# at least one of its terms appears in the normalized chunk text.
-# These labels are automatic heuristics: check relevance_labels.csv and adjust them if needed.
-# must=None -> the collection should NOT answer the question (excluded from quality metrics).
+
+
+
+
 BANK = [
     ("C01", "clean", "What is the difference between K-Means and DBSCAN?", [["k means", "kmeans"], ["dbscan"]], True),
     ("C02", "clean", "How do decision trees work for classification?", [DT, ["classification"]], True),
@@ -99,7 +87,9 @@ BANK = [
 ]
 
 
-# ------------------------------------------------------------------ helpers
+
+
+
 def padded(text):
     return " " + text.strip() + " "
 
@@ -186,7 +176,11 @@ def mean_or_blank(values):
     return round(statistics.mean(values), 3) if values else ""
 
 
-# ----------------------------------------------- 1. timing + retrieval quality
+
+
+
+
+
 def run_quality_and_timing(chunks, repeats):
     methods, vocabulary_frequency, _ = build_methods(chunks)
     norm_by_id = {c["id"]: padded(c["normalized_text"]) for c in chunks}
@@ -297,7 +291,7 @@ def overlap_cases(rankings):
     write_csv(OUT_DIR / "exact_vs_hybrid_overlap.csv", rows)
 
 
-# ------------------------------------------------------- 2. collection size
+
 def scale_chunks(chunks, scale):
     target = max(1, int(len(chunks) * scale))
     if target <= len(chunks):
@@ -330,7 +324,9 @@ def scaling_experiment(chunks, repeats):
     return rows
 
 
-# ------------------------------------------------------ 3. context selection
+
+
+
 def search_terms(method, question, vocabulary_frequency):
     """Terms used for the context coverage step: exact search has no spelling correction."""
     terms = tokenize_question(question)
@@ -371,7 +367,9 @@ def context_experiment(chunks, rankings, vocabulary_frequency):
     return rows
 
 
-# ----------------------------------------------------- 4. language model
+
+
+
 def llm_comparison(chunks, rankings, vocabulary_frequency):
     chunk_tokens = {c["id"]: set(c["tokens"]) for c in chunks}
     norm_by_id = {c["id"]: padded(c["normalized_text"]) for c in chunks}
@@ -416,7 +414,9 @@ def llm_comparison(chunks, rankings, vocabulary_frequency):
     return rows
 
 
-# ------------------------------------------------------------------- plots
+
+
+
 def make_plots(summary, category_rows, scaling_rows):
     try:
         import matplotlib
@@ -471,7 +471,8 @@ def make_plots(summary, category_rows, scaling_rows):
     print(f"Plots saved in {OUT_DIR}")
 
 
-# -------------------------------------------------------------------- main
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--no-llm", action="store_true", help="skip the language-model comparison")

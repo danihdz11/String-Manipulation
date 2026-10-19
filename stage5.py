@@ -1,8 +1,4 @@
-"""Stage 5: question -> hybrid retrieval -> context selection -> Hugging Face model -> answer.
 
-Requires: pip install transformers torch
-Reuses the Stage 4 functions (keep this file next to stage4.py).
-"""
 import csv
 import json
 import re
@@ -33,7 +29,8 @@ MAX_CONTEXT_WORDS = 350
 OVERLAP_WORDS = 30      # same overlap used in Stage 1
 REDUNDANCY_THRESHOLD = 0.5
 
-# (category, question). clean = well written, typo = misspelled, offtopic = corpus should not answer it.
+
+
 QUESTIONS = [
     ("clean", "What is the difference between K-Means and DBSCAN?"),
     ("clean", "How do decision trees work for classification?"),
@@ -58,7 +55,8 @@ QUESTIONS = [
 ]
 
 
-# ---------------------------------------------------------------- retrieval
+
+
 def retrieve_hybrid(question, vocabulary_frequency, prepared_chunks, chunks):
     """Hybrid retrieval exactly as in Stage 4. Returns (ranking, corrected_terms, corrections)."""
     query_terms = tokenize_question(question)
@@ -72,7 +70,9 @@ def retrieve_hybrid(question, vocabulary_frequency, prepared_chunks, chunks):
     return ranking, corrected_terms, corrections
 
 
-# ---------------------------------------------------------- context selection
+
+
+
 def split_id(chunk_id):
     prefix, _, number = chunk_id.rpartition("_")
     return prefix, int(number) if number.isdigit() else None
@@ -149,7 +149,9 @@ def context_coverage(corrected_terms, selected, chunk_tokens):
     return covered / len(corrected_terms)
 
 
-# ---------------------------------------------------------------- generation
+
+
+
 def load_model():
     from transformers import pipeline  # imported here so retrieval can be tested without it
     return pipeline("text-generation", model=MODEL_NAME)
@@ -167,7 +169,6 @@ def generate_answer(generator, question, context):
     return output[0]["generated_text"][-1]["content"].strip()
 
 
-# ---------------------------------------------------------------------- main
 def main():
     with INPUT_FILE.open("r", encoding="utf-8") as f:
         chunks = json.load(f)
