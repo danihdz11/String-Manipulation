@@ -4,7 +4,7 @@ import time
 from collections import Counter
 from pathlib import Path
 
-from stage3 import STOPWORDS  # Reuse the Stage 3 question stopwords.
+from stage3 import STOPWORDS
 
 BASE_DIR = Path(__file__).resolve().parent
 INPUT_FILE = BASE_DIR / "data/processed/preprocessed_chunks.json"
@@ -14,13 +14,11 @@ WINDOW_MULTIPLIER = 3
 
 
 def tokenize_question(question):
-    """Keep meaningful query words, using the Stage 2 tokenization rules."""
     tokens = re.findall(r"[a-z0-9]+", question.lower())
     return list(dict.fromkeys(token for token in tokens if token not in STOPWORDS))
 
 
 def levenshtein_distance(a, b):
-    """Edit distance using dynamic programming and two rows of memory."""
     if len(a) < len(b):
         a, b = b, a
 
@@ -37,7 +35,6 @@ def levenshtein_distance(a, b):
 
 
 def build_index(chunks):
-    """Build a vocabulary and per-chunk term frequencies once (offline setup)."""
     vocabulary_frequency = Counter()
     prepared_chunks = []
 
@@ -55,11 +52,6 @@ def build_index(chunks):
 
 
 def correct_query(query_terms, vocabulary_frequency):
-    """Correct mild spelling mistakes based on the document vocabulary.
-
-    For short terms, allow no corrections. For other words, allow 1-2 edits.
-    Prefer minimum distance, then higher collection frequency, then alphabetically.
-    """
     vocabulary = vocabulary_frequency.keys()
     corrections = []
 
@@ -89,7 +81,6 @@ def correct_query(query_terms, vocabulary_frequency):
 
 
 def search_levenshtein(prepared_chunks, corrections):
-    """Rank chunks by coverage of corrected query words and term frequency."""
     results = []
     count = len(corrections)
     if not count:
@@ -113,7 +104,6 @@ def search_levenshtein(prepared_chunks, corrections):
             matches[correction["original"]] = {"matched_as": term, "occurrences": frequency}
 
         if matches:
-            # Score in the 0-100 range, with presence favored over repetition.
             score = 100 * (0.90 * weighted_coverage / count + 0.10 * frequency_bonus / count)
             results.append({
                 "id": item["chunk"]["id"],
@@ -127,24 +117,17 @@ def search_levenshtein(prepared_chunks, corrections):
 
 
 def word_ngrams(words):
-    """Word unigrams and adjacent word bigrams, as a set."""
     grams = set(words)
     grams.update(zip(words, words[1:]))
     return grams
 
 
 def jaccard_similarity(set_a, set_b):
-    """Jaccard(A, B) = |A intersection B| / |A union B|."""
     union = set_a | set_b
     return len(set_a & set_b) / len(union) if union else 0.0
 
 
 def max_window_jaccard(content_tokens, query_grams, query_length):
-    """Compare the query against short local text windows (not whole chunks).
-
-    Small windows prevent 180-word chunks from diluting Jaccard similarity.
-    They also reward search terms that occur near one another.
-    """
     if not content_tokens or not query_grams:
         return 0.0
 
@@ -163,7 +146,6 @@ def max_window_jaccard(content_tokens, query_grams, query_length):
 
 
 def search_jaccard(prepared_chunks, query_terms):
-    """Use word 1-grams/2-grams and local-window Jaccard for retrieval."""
     results = []
     query_grams = word_ngrams(query_terms)
 
@@ -184,7 +166,6 @@ def search_jaccard(prepared_chunks, query_terms):
 
 
 def combine_rankings(levenshtein_results, jaccard_results, chunks):
-    """Hybrid ranking: 65% correction-based score + 35% local Jaccard."""
     lev_scores = {item["id"]: item["score"] for item in levenshtein_results}
     jac_scores = {item["id"]: item["score"] for item in jaccard_results}
     combined = []
@@ -231,7 +212,6 @@ def main():
     with INPUT_FILE.open("r", encoding="utf-8") as file:
         chunks = json.load(file)
 
-    # Index construction is offline and NOT part of query time.
     vocabulary_frequency, prepared_chunks = build_index(chunks)
     print(f"Loaded {len(chunks)} chunks and {len(vocabulary_frequency)} unique terms.")
 
@@ -249,12 +229,10 @@ def main():
     levenshtein_results = search_levenshtein(prepared_chunks, corrections)
     lev_elapsed = time.perf_counter() - t0
 
-    # Independent Jaccard method uses the original query terms.
     t0 = time.perf_counter()
     jaccard_results = search_jaccard(prepared_chunks, query_terms)
     jac_elapsed = time.perf_counter() - t0
 
-    # Hybrid Jaccard uses corrected terms, then merges both signals.
     t0 = time.perf_counter()
     corrected_terms = list(dict.fromkeys(item["corrected"] for item in corrections))
     corrected_jaccard_results = search_jaccard(prepared_chunks, corrected_terms)

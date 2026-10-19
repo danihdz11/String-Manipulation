@@ -13,10 +13,8 @@ def preprocess_text(text):
     # Convert text to lowercase
     text = text.lower()
 
-    # Tokenize and remove punctuation/special characters
     tokens = re.findall(r"[a-z0-9]+", text)
 
-    # Reconstruct normalized text
     normalized_text = " ".join(tokens)
 
     return tokens, normalized_text

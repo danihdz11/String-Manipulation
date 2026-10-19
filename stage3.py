@@ -8,7 +8,7 @@ INPUT_FILE = BASE_DIR / "data/processed/preprocessed_chunks.json"
 OUTPUT_FILE = BASE_DIR / "data/processed/exact_search_results.json"
 TOP_K = 5
 
-# Common question words that do not help identify the topic.
+
 STOPWORDS = {
     "a", "an", "and", "are", "as", "at", "be", "between", "by", "can",
     "compare", "describe", "did", "difference", "do", "does", "explain",
@@ -50,8 +50,7 @@ def extract_patterns(question):
             patterns.append(term)
             seen.add(term)
 
-    # Add expressions consisting of adjacent words.
-    # Hyphenated terms are already preserved above.
+
     for i in range(len(normalized_terms) - 1):
         first = normalized_terms[i]
         second = normalized_terms[i + 1]
@@ -162,7 +161,6 @@ def retrieve_exact(chunks, patterns, algorithm, top_k=TOP_K):
     start_time = time.perf_counter()
 
     for chunk in chunks:
-        # Padding with spaces prevents substring matches inside other words.
         text = " " + chunk["normalized_text"].strip() + " "
         matches = {}
 
@@ -174,13 +172,12 @@ def retrieve_exact(chunks, patterns, algorithm, top_k=TOP_K):
         if not matches:
             continue
 
-        # Base score based on matched patterns and frequency
         base_score = sum(
             (15 if " " in pattern else 10) + min(count, 3)
             for pattern, count in matches.items()
         )
 
-        # Reward chunks containing multiple query patterns
+        
         coverage_bonus = 20 * max(0, len(matches) - 1)
 
         score = base_score + coverage_bonus
@@ -253,7 +250,7 @@ def main():
     print("\n===== COMPARISON =====")
     print(f"Identical ranked results: {identical}")
 
-    # Save only the top results so the output is easy to inspect.
+
     report = {
         "question": question,
         "patterns": patterns,

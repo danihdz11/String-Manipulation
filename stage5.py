@@ -21,12 +21,12 @@ INPUT_FILE = BASE_DIR / "data/processed/preprocessed_chunks.json"
 OUTPUT_JSON = BASE_DIR / "data/processed/stage5_results.json"
 OUTPUT_CSV = BASE_DIR / "data/processed/stage5_results.csv"
 
-MODEL_NAME = "Qwen/Qwen2.5-1.5B-Instruct"   # 0.5B ignoraba el contexto; 1.5B sigue mejor las instrucciones
-MIN_COVERAGE = 0.5      # fraction of query terms that must appear in the selected context
-MAX_CHUNKS = 4          # chunks taken greedily by score
-HARD_MAX_CHUNKS = 6     # absolute limit after the coverage step
+MODEL_NAME = "Qwen/Qwen2.5-1.5B-Instruct" 
+MIN_COVERAGE = 0.5      
+MAX_CHUNKS = 4          
+HARD_MAX_CHUNKS = 6     
 MAX_CONTEXT_WORDS = 350
-OVERLAP_WORDS = 30      # same overlap used in Stage 1
+OVERLAP_WORDS = 30      
 REDUNDANCY_THRESHOLD = 0.5
 
 
@@ -58,7 +58,6 @@ QUESTIONS = [
 
 
 def retrieve_hybrid(question, vocabulary_frequency, prepared_chunks, chunks):
-    """Hybrid retrieval exactly as in Stage 4. Returns (ranking, corrected_terms, corrections)."""
     query_terms = tokenize_question(question)
     if not query_terms:
         return [], [], []
@@ -79,15 +78,7 @@ def split_id(chunk_id):
 
 
 def select_context(ranking, corrected_terms, chunk_tokens):
-    """Pick chunks for the LLM.
-
-    1. Greedy by score, up to MAX_CHUNKS, skipping redundant chunks.
-    2. Coverage step: if a query term appears in no selected chunk, add the
-       best-ranked chunk that contains it (up to HARD_MAX_CHUNKS).
-    3. Consecutive chunks overlap by 30 words, so the repeated words are trimmed.
-    Everything respects MAX_CONTEXT_WORDS.
-    """
-    selected = []   # dicts: id, words, wordset
+    selected = []  
     total_words = 0
 
     def try_add(result):
@@ -95,7 +86,6 @@ def select_context(ranking, corrected_terms, chunk_tokens):
         prefix, number = split_id(result["id"])
         words = result["text"].split()
 
-        # Trim overlap with already selected neighbours.
         for s in selected:
             s_prefix, s_number = split_id(s["id"])
             if s_prefix == prefix and number is not None and s_number is not None:
@@ -116,13 +106,11 @@ def select_context(ranking, corrected_terms, chunk_tokens):
         total_words += len(words)
         return True
 
-    # Step 1: greedy by score.
     for result in ranking:
         if len(selected) >= MAX_CHUNKS:
             break
         try_add(result)
 
-    # Step 2: make sure every meaningful query term is covered.
     for term in corrected_terms:
         if len(term) <= 3 or len(selected) >= HARD_MAX_CHUNKS:
             continue
@@ -139,7 +127,6 @@ def select_context(ranking, corrected_terms, chunk_tokens):
 
 
 def context_coverage(corrected_terms, selected, chunk_tokens):
-    """Fraction of query terms that appear in at least one selected chunk."""
     if not corrected_terms or not selected:
         return 0.0
     covered = sum(
@@ -153,7 +140,7 @@ def context_coverage(corrected_terms, selected, chunk_tokens):
 
 
 def load_model():
-    from transformers import pipeline  # imported here so retrieval can be tested without it
+    from transformers import pipeline
     return pipeline("text-generation", model=MODEL_NAME)
 
 
@@ -173,12 +160,10 @@ def main():
     with INPUT_FILE.open("r", encoding="utf-8") as f:
         chunks = json.load(f)
 
-    # Offline setup (not part of query time).
     vocabulary_frequency, prepared_chunks = build_index(chunks)
     chunk_tokens = {c["id"]: set(c["tokens"]) for c in chunks}
     generator = load_model()
 
-    # Optional: python stage5.py "your question here"
     if len(sys.argv) > 1:
         questions = [("custom", " ".join(sys.argv[1:]))]
     else:
@@ -197,7 +182,7 @@ def main():
             answer = "(no chunks retrieved)"
             generation_seconds = 0.0
         elif coverage < MIN_COVERAGE:
-            # Retrieval is too weak: do not let the model improvise from its own knowledge.
+    
             answer = "The provided context does not contain this information. (rejected: low coverage)"
             generation_seconds = 0.0
         else:
@@ -218,7 +203,7 @@ def main():
             "answer": answer,
             "retrieval_seconds": round(retrieval_seconds, 6),
             "generation_seconds": round(generation_seconds, 3),
-            "supported_by_context": "",   # fill in by hand: yes / partial / no
+            "supported_by_context": "",
         }
         results.append(row)
 

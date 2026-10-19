@@ -23,7 +23,6 @@ for name, url in documents.items():
 
     soup = BeautifulSoup(response.content, "html.parser")
 
-    # Extract only the main documentation content
     article = soup.select_one("article.bd-article")
 
     if article is None:
@@ -31,7 +30,7 @@ for name, url in documents.items():
             f"Could not find article content: {url}"
         )
 
-    # Remove unnecessary elements
+
     for element in article.select(
         "script, style, nav, aside, footer, .headerlink, .copybtn"
     ):

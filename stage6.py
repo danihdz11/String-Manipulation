@@ -110,7 +110,6 @@ def write_csv(path, rows):
 
 
 def time_call(fn, question, repeats):
-    """Run fn(question) several times. Returns (mean_ms, median_ms, last_ranking)."""
     times = []
     ranking = []
     for _ in range(repeats):
@@ -121,7 +120,6 @@ def time_call(fn, question, repeats):
 
 
 def build_methods(chunks):
-    """Build every retrieval method over a collection. Index construction is NOT timed."""
     vocabulary_frequency, prepared_chunks = build_index(chunks)
 
     def make_exact(algorithm):
@@ -158,7 +156,6 @@ def build_methods(chunks):
 
 
 def evaluate(ranking_ids, relevant_ids):
-    """hit@3, hit@5, precision@5 and reciprocal rank of one ranking."""
     rr = 0.0
     for position, chunk_id in enumerate(ranking_ids, start=1):
         if chunk_id in relevant_ids:
@@ -186,7 +183,7 @@ def run_quality_and_timing(chunks, repeats):
     norm_by_id = {c["id"]: padded(c["normalized_text"]) for c in chunks}
 
     rows = []
-    rankings = {}       # (question_id, method) -> ranking list of dicts
+    rankings = {}      
     label_rows = []
     z_mismatch = 0
 
@@ -328,7 +325,6 @@ def scaling_experiment(chunks, repeats):
 
 
 def search_terms(method, question, vocabulary_frequency):
-    """Terms used for the context coverage step: exact search has no spelling correction."""
     terms = tokenize_question(question)
     if method == "kmp":
         return terms
@@ -404,7 +400,7 @@ def llm_comparison(chunks, rankings, vocabulary_frequency):
                 "answer_terms_in_context": has_answer,
                 "generation_s": round(generation_seconds, 2),
                 "answer": answer,
-                "supported_by_context": "",   # fill in by hand: yes / partial / no
+                "supported_by_context": "", 
             })
             print(f"\n[{qid} | {method}] {question}\n  Chunks: {ids}\n  Answer: {answer[:300]}")
 
@@ -426,7 +422,6 @@ def make_plots(summary, category_rows, scaling_rows):
         print("matplotlib is not installed; skipping plots (pip install matplotlib).")
         return
 
-    # Average search time per method.
     fig, ax = plt.subplots(figsize=(7, 4))
     ax.bar([s["method"] for s in summary], [s["mean_ms"] for s in summary])
     ax.set_ylabel("Mean search time (ms)")
@@ -435,7 +430,6 @@ def make_plots(summary, category_rows, scaling_rows):
     fig.savefig(OUT_DIR / "plot_time_per_method.png", dpi=150)
     plt.close(fig)
 
-    # Time vs collection size.
     if scaling_rows:
         fig, ax = plt.subplots(figsize=(7, 4))
         for name in METHODS:
@@ -449,7 +443,6 @@ def make_plots(summary, category_rows, scaling_rows):
         fig.savefig(OUT_DIR / "plot_time_vs_size.png", dpi=150)
         plt.close(fig)
 
-    # hit@3 by category.
     categories = [c for c in ("clean", "typo", "paraphrase") if any(r["category"] == c for r in category_rows)]
     width = 0.2
     fig, ax = plt.subplots(figsize=(8, 4))
