@@ -32,7 +32,7 @@ OUT_DIR = BASE_DIR / "data/processed/stage6"
 REPEATS = 5
 SCALES = [0.25, 0.5, 1, 2, 4, 8]
 METHODS = ["kmp", "z_function", "levenshtein", "jaccard", "hybrid"]
-QUALITY_METHODS = ["kmp", "levenshtein", "jaccard", "hybrid"]   # Z-function gives the same ranking as KMP
+QUALITY_METHODS = ["kmp", "levenshtein", "jaccard", "hybrid"] 
 
 DT = ["decision tree", "decision trees"]
 
@@ -271,7 +271,6 @@ def summarize(rows, z_mismatch):
 
 
 def overlap_cases(rankings):
-    """Top-5 overlap between exact (KMP) and hybrid retrieval, to find similar / different cases."""
     rows = []
     for qid, category, question, must, _ in BANK:
         if must is None:

@@ -21,10 +21,8 @@ STOPWORDS = {
 
 
 def extract_patterns(question):
-    """
-    Extract meaningful search patterns while keeping
-    hyphenated terms as a single concept.
-    """
+
+   
     raw_terms = re.findall(
         r"[a-z0-9]+(?:-[a-z0-9]+)*",
         question.lower()
@@ -73,7 +71,7 @@ def extract_patterns(question):
 
 
 def compute_lps(pattern):
-    """Longest proper prefix that is also a suffix (KMP preprocessing)."""
+
     lps = [0] * len(pattern)
     prefix_length = 0
     i = 1
@@ -92,7 +90,7 @@ def compute_lps(pattern):
 
 
 def kmp_count(text, pattern):
-    """Count all exact occurrences of pattern in text using KMP."""
+
     if not pattern:
         return 0
 
@@ -117,7 +115,7 @@ def kmp_count(text, pattern):
 
 
 def z_function(s):
-    """Compute the Z-array in O(len(s))."""
+
     z = [0] * len(s)
     left = 0
     right = 0
@@ -137,11 +135,11 @@ def z_function(s):
 
 
 def z_count(text, pattern):
-    """Count all exact occurrences using Z-function."""
+
     if not pattern:
         return 0
 
-    # '\0' cannot occur in our normalized documents or patterns.
+
     combined = pattern + "\0" + text
     z = z_function(combined)
     offset = len(pattern) + 1
@@ -149,7 +147,7 @@ def z_count(text, pattern):
 
 
 def retrieve_exact(chunks, patterns, algorithm, top_k=TOP_K):
-    """Rank chunks using the same scoring strategy for both algorithms."""
+
     if algorithm == "kmp":
         count_matches = kmp_count
     elif algorithm == "z":

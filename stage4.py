@@ -8,7 +8,7 @@ from stage3 import STOPWORDS
 
 BASE_DIR = Path(__file__).resolve().parent
 INPUT_FILE = BASE_DIR / "data/processed/preprocessed_chunks.json"
-OUTPUT_FILE = BASE_DIR / "data/processed/approximate_search_results_question4.json"
+OUTPUT_FILE = BASE_DIR / "data/processed/approximate_search_results_stage4.json"
 TOP_K = 5
 WINDOW_MULTIPLIER = 3
 

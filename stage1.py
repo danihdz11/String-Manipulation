@@ -2,7 +2,6 @@
 import json
 from pathlib import Path
 
-# Configuration
 CHUNK_SIZE = 180
 OVERLAP = 30
 

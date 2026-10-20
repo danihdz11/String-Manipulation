@@ -3,14 +3,14 @@ import json
 import re
 from pathlib import Path
 
-# Paths
+ 
 BASE_DIR = Path(__file__).resolve().parent
 INPUT_FILE = BASE_DIR / "data/processed/chunks.json"
 OUTPUT_FILE = BASE_DIR / "data/processed/preprocessed_chunks.json"
 
 
 def preprocess_text(text):
-    # Convert text to lowercase
+
     text = text.lower()
 
     tokens = re.findall(r"[a-z0-9]+", text)
@@ -21,7 +21,7 @@ def preprocess_text(text):
 
 
 def main():
-    # Load original chunks
+
     with open(INPUT_FILE, "r", encoding="utf-8") as file:
         chunks = json.load(file)
 
@@ -34,7 +34,6 @@ def main():
             chunk["text"]
         )
 
-        # Preserve original chunk metadata and text
         processed_chunk = {
             **chunk,
             "normalized_text": normalized_text,
@@ -43,12 +42,10 @@ def main():
 
         preprocessed_chunks.append(processed_chunk)
 
-        # Add words to vocabulary
         vocabulary.update(tokens)
 
         total_tokens += len(tokens)
 
-    # Save processed data
     with open(OUTPUT_FILE, "w", encoding="utf-8") as file:
         json.dump(
             preprocessed_chunks,
@@ -63,7 +60,6 @@ def main():
     print(f"Unique words: {len(vocabulary):,}")
     print(f"Output file: {OUTPUT_FILE}")
 
-    # Show preprocessing example
     first_chunk = preprocessed_chunks[0]
 
     print("\n===== PREPROCESSING EXAMPLE =====")
