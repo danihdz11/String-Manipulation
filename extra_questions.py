@@ -60,7 +60,6 @@ def main():
     (OUT_DIR / "stage5_extra_results.json").write_text(
         json.dumps(rows, ensure_ascii=False, indent=2), encoding="utf-8")
 
-    # Filas para la tabla del Anexo A (separadas por tabulador).
     tsv = []
     for r in rows:
         answer = " ".join(r["answer"].split())
@@ -68,7 +67,6 @@ def main():
                               str(r["retrieval_ms"]), f"{r['generation_s']:.2f}", answer]))
     (OUT_DIR / "anexo_a_extra.tsv").write_text("\n".join(tsv), encoding="utf-8")
 
-    # Texto para el Anexo B.
     lines = []
     for r in rows:
         lines += [f"Pregunta {r['n']}: {r['question']}",
